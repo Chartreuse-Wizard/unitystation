@@ -37,9 +37,6 @@ namespace PlayGroup
 		private PlayerSprites playerSprites;
 		private PlayerState predictedState;
 
-		public LayerMask matrixLayerMask;
-		private RaycastHit2D[] rayHit;
-
 		public GameObject pullingObject;
 
 		//pull objects
@@ -144,7 +141,6 @@ namespace PlayGroup
 			registerTile = GetComponent<RegisterTile>();
 			pushPull = GetComponent<PushPull>();
 		}
-
 
 		private void Update()
 		{
@@ -371,20 +367,10 @@ namespace PlayGroup
 				return;
 			}
 
-
 			Vector3Int pos = Vector3Int.RoundToInt(transform.localPosition);
 			if (matrix.IsFloatingAt(pos))
 			{
-				rayHit = Physics2D.RaycastAll(transform.position, lastDirection, 1.1f, matrixLayerMask);
-				for (int i = 0; i < rayHit.Length; i++){
-					if(rayHit[i].collider.gameObject.layer == 24){
-						playerMove.ChangeMatricies(rayHit[i].collider.gameObject.transform.parent);
-					}
-				}
-				if (rayHit.Length > 0){
-					return;
-				}
-
+				//TODO Check with PlayerMatrixDetector
 				Vector3Int newGoal = Vector3Int.RoundToInt(transform.localPosition + (Vector3) lastDirection);
 				serverState.Position = newGoal;
 				predictedState.Position = newGoal;

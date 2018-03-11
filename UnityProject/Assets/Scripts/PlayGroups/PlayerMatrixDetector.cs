@@ -50,18 +50,6 @@ namespace PlayGroup
 					return false;
 				}
 
-				//checks to see if the matrix has changed
-				if (rayHit[i].collider.gameObject.layer == 24
-					&& rayHit[i].collider != curMatrixCol) {
-					//TODO MATRIX CHANGES
-					//curMatrixCol = rayHit[i].collider;
-					//ChangeMatricies(rayHit[i].collider.gameObject.transform.parent);
-					//Debug.Log($"Change Matricies {rayHit[i].collider.gameObject.transform.parent.name}");
-					//playerMove.allowInput = false;
-					//playerMove.StartCoroutine(playerMove.DoorInputCoolDown());
-					//return false;
-				}
-
 				//Detected windows or walls across matrices or from space:
 				if (rayHit[i].collider.gameObject.layer == 9
 				   || rayHit[i].collider.gameObject.layer == 18) {
@@ -84,16 +72,15 @@ namespace PlayGroup
 			}
 			Camera.main.transform.parent = newParent;
 		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			Debug.Log($"OnTriggerEntered {collision.name}");
+			if(collision.gameObject.layer == 24 && collision != curMatrixCol){
+				curMatrixCol = collision;
+				ChangeMatricies(collision.gameObject.transform.parent);
+				Debug.Log($"Change Matricies {collision.gameObject.transform.parent.name}");
+			}
+		}
 	}
 }
-
-
-//rayHit = Physics2D.RaycastAll(transform.position, lastDirection, 1.1f, matrixLayerMask);
-				//for (int i = 0; i<rayHit.Length; i++){
-				//	if(rayHit[i].collider.gameObject.layer == 24){
-				//		playerMove.ChangeMatricies(rayHit[i].collider.gameObject.transform.parent);
-				//	}
-				//}
-				//if (rayHit.Length > 0){
-				//	return;
-				//}

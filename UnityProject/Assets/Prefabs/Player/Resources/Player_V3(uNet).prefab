@@ -1068,9 +1068,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitCheckLayers:
     serializedVersion: 2
-    m_Bits: 0
-  playerMove: {fileID: 0}
-  playerSync: {fileID: 0}
+    m_Bits: 17170944
+  playerMove: {fileID: 114792299177679754}
+  playerSync: {fileID: 114617980452984522}
 --- !u!114 &114053825719430910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1799,7 +1799,7 @@ MonoBehaviour:
   azerty: 0
   isGhost: 0
   keyCodes: 7700000061000000730000006400000011010000140100001201000013010000
-  playerMatrixDetector: {fileID: 0}
+  playerMatrixDetector: {fileID: 114051500949464366}
   pna: {fileID: 0}
   pushPull: {fileID: 0}
   speed: 6
